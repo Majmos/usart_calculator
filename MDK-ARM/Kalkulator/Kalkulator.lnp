@@ -1,0 +1,28 @@
+--cpu Cortex-M3
+"kalkulator\startup_stm32f103xb.o"
+"kalkulator\main.o"
+"kalkulator\gpio.o"
+"kalkulator\tim.o"
+"kalkulator\usart.o"
+"kalkulator\stm32f1xx_it.o"
+"kalkulator\stm32f1xx_hal_msp.o"
+"kalkulator\stm32f1xx_hal_gpio_ex.o"
+"kalkulator\stm32f1xx_hal_tim.o"
+"kalkulator\stm32f1xx_hal_tim_ex.o"
+"kalkulator\stm32f1xx_hal.o"
+"kalkulator\stm32f1xx_hal_rcc.o"
+"kalkulator\stm32f1xx_hal_rcc_ex.o"
+"kalkulator\stm32f1xx_hal_gpio.o"
+"kalkulator\stm32f1xx_hal_dma.o"
+"kalkulator\stm32f1xx_hal_cortex.o"
+"kalkulator\stm32f1xx_hal_pwr.o"
+"kalkulator\stm32f1xx_hal_flash.o"
+"kalkulator\stm32f1xx_hal_flash_ex.o"
+"kalkulator\stm32f1xx_hal_exti.o"
+"kalkulator\stm32f1xx_hal_uart.o"
+"kalkulator\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "Kalkulator\Kalkulator.sct"
+
+--diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Kalkulator.map" -o Kalkulator\Kalkulator.axf
