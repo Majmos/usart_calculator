@@ -1,5 +1,5 @@
 # usart_calculator
-number1 and number2 aare equal 0 at the start of the program.
+number1 and number2 are equal 0 at the start of the program.
 GPIOA:
 Pin 0: number1++
 Pin 1: number1--
