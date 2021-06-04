@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,45 +46,79 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-volatile int number1 = 0, number2 = 0;
-uint8_t text[100];
+volatile int number1 = 0, number2 = 0, result = 0;
+char text[100];
+char input[64];
 uint16_t size;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-/*void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	if(htim->Instance == TIM3){
-		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_3);
+
+HAL_StatusTypeDef uart_send(char* text) {
+	return HAL_UART_Transmit(&huart1, (uint8_t*)text, strlen(text), 1000);
+}
+
+HAL_StatusTypeDef uart_recv(char* text) {
+	HAL_StatusTypeDef status;
+	for(int i = 0; i < 64; ++i) {
+		char c;
+		status = HAL_UART_Receive(&huart1, (uint8_t*)&c, 1, 200000);
+		if(status == HAL_TIMEOUT) break;
+		if(c == '\r') {
+			input[i] = '\n';
+			uart_send("\n");
+			break;
+		}
+		HAL_UART_Transmit(&huart1, (uint8_t*)&c, 1, 20);
+		input[i] = c;
 	}
-}*/
+	return status;
+}
+
+
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if(GPIO_Pin == GPIO_PIN_0){
-		number1++;
-		size = sprintf( (char*) text, "liczba_1++;\n\rliczba_1 = %d\n\r", number1);
+		uart_send("Wpisz liczbe 1: ");
+		uart_recv(input);
+		sscanf(input, "%d", &number1);
+		sprintf(text, "liczba_1 = %d\n", number1);
+		uart_send(text);
 		//size = sprintf( (char*) text, "Wprowadz dwie liczby, a nastepnie wybierz dzialanie\n\rPin 4: '+'; Pin 5: '-'; Pin 6: '*'; Pin 7: '/';\n\r");
 	} else if(GPIO_Pin == GPIO_PIN_1){
-		number1--;
-		size = sprintf( (char*) text, "liczba_1--;\n\rliczba_1 = %d\n\r", number1);
-	} else if(GPIO_Pin == GPIO_PIN_2){
-		number2++;
-		size = sprintf( (char*) text, "liczba_2++;\n\rliczba_2 = %d\n\r", number2);
-	} else if(GPIO_Pin == GPIO_PIN_3){
-		number2--;
-		size = sprintf( (char*) text, "liczba_2--;\n\rliczba_2 = %d\n\r", number2);
+		uart_send("Wpisz liczbe 2: ");
+		uart_recv(input);
+		sscanf(input, "%d", &number2);
+		sprintf(text, "liczba_2 = %d\n", number2);
+		uart_send(text);
+	} else if (GPIO_Pin == GPIO_PIN_2) {
+		number1 = result;
+		sprintf(text, "liczba_1 = %d\n", number1);
+		uart_send(text);
+	} else if (GPIO_Pin == GPIO_PIN_3) {
+		number2 = result;
+		sprintf(text, "liczba_2 = %d\n", number2);
+		uart_send(text);
 	} else if(GPIO_Pin == GPIO_PIN_4){
-		size = sprintf( (char*) text, "%d + %d = %d\n\r", number1, number2, number1 + number2);
+		result = number1 + number2;
+		size = sprintf(text, "%d + %d = %d\n\r", number1, number2, result);
+		HAL_UART_Transmit_IT(&huart1, (uint8_t*) text, size);
 	} else if(GPIO_Pin == GPIO_PIN_5) {
-		size = sprintf( (char*) text, "%d - %d = %d\n\r", number1, number2, number1 - number2);
+		result = number1 - number2;
+		size = sprintf(text, "%d - %d = %d\n\r", number1, number2, result);
+		HAL_UART_Transmit_IT(&huart1, (uint8_t*) text, size);
 	} else if(GPIO_Pin == GPIO_PIN_6) {
-		size = sprintf( (char*) text, "%d * %d = %d\n\r", number1, number2, number1 * number2);
+		result = number1 * number2;
+		size = sprintf(text, "%d * %d = %d\n\r", number1, number2, result);
+		HAL_UART_Transmit_IT(&huart1, (uint8_t*) text, size);
 	} else if(GPIO_Pin == GPIO_PIN_7) {
 		if(number2 != 0){
-			size = sprintf( (char*) text, "%d / %d = %.3f\n\r", number1, number2, (float)number1 / number2);
-		} else size = sprintf( (char*) text, "Nie wolno dzielic przez 0\n\r");
+			size = sprintf(text, "%d / %d = %.3f\n\r", number1, number2, (float)number1 / number2);
+		} else size = sprintf(text, "Nie wolno dzielic przez 0\n\r");
+		HAL_UART_Transmit_IT(&huart1, (uint8_t*) text, size);
 	}
-	HAL_UART_Transmit_IT(&huart1, text, size);
 }
 /* USER CODE END PFP */
 
@@ -123,7 +158,9 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-	//HAL_TIM_Base_Start_IT(&htim3);
+	
+	
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
