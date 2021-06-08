@@ -6,14 +6,14 @@ kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/CMSIS/Include/core_cm3.h
-kalkulator\stm32f1xx_hal_flash_ex.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+kalkulator\stm32f1xx_hal_flash_ex.o: C:\Programy\Keil\ARM\ARMCC\bin\..\include\stdint.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/CMSIS/Include/cmsis_version.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-kalkulator\stm32f1xx_hal_flash_ex.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+kalkulator\stm32f1xx_hal_flash_ex.o: C:\Programy\Keil\ARM\ARMCC\bin\..\include\stddef.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 kalkulator\stm32f1xx_hal_flash_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h

@@ -46,7 +46,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-volatile int number1 = 0, number2 = 0, result = 0;
+volatile double number1 = 0, number2 = 0, result = 0;
 char text[100];
 char input[64];
 uint16_t size;
@@ -83,39 +83,40 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if(GPIO_Pin == GPIO_PIN_0){
 		uart_send("Wpisz liczbe 1: ");
 		uart_recv(input);
-		sscanf(input, "%d", &number1);
-		sprintf(text, "liczba_1 = %d\n", number1);
+		sscanf(input, "%lf", &number1);
+		sprintf(text, "liczba_1 = %lf\n", number1);
 		uart_send(text);
 		//size = sprintf( (char*) text, "Wprowadz dwie liczby, a nastepnie wybierz dzialanie\n\rPin 4: '+'; Pin 5: '-'; Pin 6: '*'; Pin 7: '/';\n\r");
 	} else if(GPIO_Pin == GPIO_PIN_1){
 		uart_send("Wpisz liczbe 2: ");
 		uart_recv(input);
-		sscanf(input, "%d", &number2);
-		sprintf(text, "liczba_2 = %d\n", number2);
+		sscanf(input, "%lf", &number2);
+		sprintf(text, "liczba_2 = %lf\n", number2);
 		uart_send(text);
 	} else if (GPIO_Pin == GPIO_PIN_2) {
 		number1 = result;
-		sprintf(text, "liczba_1 = %d\n", number1);
+		sprintf(text, "liczba_1 = %lf\n", number1);
 		uart_send(text);
 	} else if (GPIO_Pin == GPIO_PIN_3) {
 		number2 = result;
-		sprintf(text, "liczba_2 = %d\n", number2);
+		sprintf(text, "liczba_2 = %lf\n", number2);
 		uart_send(text);
 	} else if(GPIO_Pin == GPIO_PIN_4){
 		result = number1 + number2;
-		size = sprintf(text, "%d + %d = %d\n\r", number1, number2, result);
+		size = sprintf(text, "%lf + %lf = %lf\n\r", number1, number2, result);
 		HAL_UART_Transmit_IT(&huart1, (uint8_t*) text, size);
 	} else if(GPIO_Pin == GPIO_PIN_5) {
 		result = number1 - number2;
-		size = sprintf(text, "%d - %d = %d\n\r", number1, number2, result);
+		size = sprintf(text, "%lf - %lf = %lf\n\r", number1, number2, result);
 		HAL_UART_Transmit_IT(&huart1, (uint8_t*) text, size);
 	} else if(GPIO_Pin == GPIO_PIN_6) {
 		result = number1 * number2;
-		size = sprintf(text, "%d * %d = %d\n\r", number1, number2, result);
+		size = sprintf(text, "%lf * %lf = %lf\n\r", number1, number2, result);
 		HAL_UART_Transmit_IT(&huart1, (uint8_t*) text, size);
 	} else if(GPIO_Pin == GPIO_PIN_7) {
 		if(number2 != 0){
-			size = sprintf(text, "%d / %d = %.3f\n\r", number1, number2, (float)number1 / number2);
+			result = number1 / number2;
+			size = sprintf(text, "%lf / %lf = %lf\n\r", number1, number2, number1 / number2);
 		} else size = sprintf(text, "Nie wolno dzielic przez 0\n\r");
 		HAL_UART_Transmit_IT(&huart1, (uint8_t*) text, size);
 	}

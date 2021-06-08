@@ -7,14 +7,14 @@ kalkulator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
 kalkulator\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 kalkulator\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
 kalkulator\main.o: ../Drivers/CMSIS/Include/core_cm3.h
-kalkulator\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+kalkulator\main.o: C:\Programy\Keil\ARM\ARMCC\bin\..\include\stdint.h
 kalkulator\main.o: ../Drivers/CMSIS/Include/cmsis_version.h
 kalkulator\main.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 kalkulator\main.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 kalkulator\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 kalkulator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 kalkulator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-kalkulator\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+kalkulator\main.o: C:\Programy\Keil\ARM\ARMCC\bin\..\include\stddef.h
 kalkulator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 kalkulator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 kalkulator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
@@ -31,5 +31,5 @@ kalkulator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 kalkulator\main.o: ../Core/Inc/tim.h
 kalkulator\main.o: ../Core/Inc/usart.h
 kalkulator\main.o: ../Core/Inc/gpio.h
-kalkulator\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
-kalkulator\main.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
+kalkulator\main.o: C:\Programy\Keil\ARM\ARMCC\bin\..\include\stdio.h
+kalkulator\main.o: C:\Programy\Keil\ARM\ARMCC\bin\..\include\string.h
